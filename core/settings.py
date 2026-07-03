@@ -3,8 +3,14 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-expancore-asistencia-key-2026'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+# Cambia esto en tu settings.py
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    'mi-asistencia-app-fyhmchf3bha3cdb7.mexicocentral-01.azurewebsites.net',
+    '127.0.0.1',
+    'localhost'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,3 +72,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'asistencia.Trabajador'
 LOGIN_URL = '/'
+# Añade esto al final del archivo
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
