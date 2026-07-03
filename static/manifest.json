@@ -1,0 +1,12 @@
+{
+  "short_name": "Asistencia",
+  "name": "Expancore Asistencia",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#1E3A8A",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/static/images/icon.png", "type": "image/png", "sizes": "192x192" }
+  ]
+}\n

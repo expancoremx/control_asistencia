@@ -1,0 +1,18 @@
+﻿<h2>Bienvenido, {{ user.nombre_completo }}</h2>
+
+{% if registro_completado %}
+    <p style='color: green;'><b>Ya has registrado tu asistencia completa por hoy. ¡Hasta mañana!</b></p>
+{% else %}
+    <form method='POST' action='{% url "registrar_asistencia" %}'>
+        {% csrf_token %}
+        {% if registro_abierto %}
+            <button type='submit' style='background-color: red; color: white; padding: 15px;'>Registrar Salida</button>
+        {% else %}
+            <button type='submit' style='background-color: green; color: white; padding: 15px;'>Registrar Entrada</button>
+        {% endif %}
+    </form>
+{% endif %}
+
+<br>
+<a href='{% url "cambiar_mi_contrasena" %}'>Cambiar mi contraseña</a> |
+<a href='{% url "logout" %}'>Cerrar sesión</a>

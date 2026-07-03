@@ -1,0 +1,41 @@
+﻿<h2>Panel de Control Administrativo</h2>
+
+<form method='GET' style="margin-bottom: 20px;">
+    <input type='date' name='fecha_inicio' value='{{ f_inicio|default:"" }}'>
+    <input type='date' name='fecha_fin' value='{{ f_fin|default:"" }}'>
+    <button type='submit'>Filtrar</button>
+    <a href='{% url "exportar_excel" %}?fecha_inicio={{ f_inicio|default:"" }}&fecha_fin={{ f_fin|default:"" }}' style="margin-left: 10px;">Descargar Excel</a>
+</form>
+
+<h3>Gestión de Empleados</h3>
+<table border='1'>
+    <tr><th>Nómina</th><th>Nombre</th><th>Estado</th><th>Acciones</th></tr>
+    {% for t in trabajadores %}
+    <tr>
+        <td>{{ t.username }}</td>
+        <td>{{ t.nombre_completo }}</td>
+        <td>{% if t.is_active %}Activo{% else %}Suspendido{% endif %}</td>
+        <td>
+            <a href='{% url "suspender_trabajador" t.id %}'>Activar/Suspender</a> |
+            <a href='/admin/asistencia/trabajador/{{ t.id }}/change/'>Editar/Cambiar Pass</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Registros de Asistencia</h3>
+<table border='1'>
+    <tr><th>Nómina</th><th>Empleado</th><th>Entrada</th><th>Salida</th><th>Acciones</th></tr>
+    {% for r in registros %}
+    <tr>
+        <td>{{ r.trabajador.username }}</td>
+        <td>{{ r.trabajador.nombre_completo }}</td>
+        <td>{{ r.entrada|date:'d/m/Y H:i' }}</td>
+        <td>{{ r.salida|date:'d/m/Y H:i'|default:'Pendiente' }}</td>
+        <td>
+            <a href='/admin/asistencia/registroasistencia/{{ r.id }}/change/'>Editar</a> |
+            <a href='{% url "eliminar_registro" r.id %}' onclick="return confirm('¿Seguro?')">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
