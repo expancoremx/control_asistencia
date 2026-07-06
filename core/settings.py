@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-expancore-asistencia-key-2026'
 # Cambia esto en tu settings.py
 DEBUG = False
 
-ALLOWED_HOSTS = ['mi-asistencia-app-fyhmchf3bha3cdb7.mexicocentral-01.azurewebsites.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
